@@ -7,7 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.GenericTransitionOptions
 import com.bumptech.glide.Glide
+import com.bumptech.glide.TransitionOptions
+import com.bumptech.glide.request.RequestListener
 import kotlinx.coroutines.*
 import java.lang.Exception
 
@@ -15,16 +18,7 @@ class MyViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
    val imageView=itemView.findViewById<ImageView>(R.id.item_image)
    lateinit var scope:CoroutineScope
    fun setProccess(context:MainActivity,url:String){
-      scope= CoroutineScope(Dispatchers.IO)
-      scope.launch {
-         val image=async{setImage(url)}.await()
-         context.runOnUiThread{
-
-               Glide.with(context).load(image).centerCrop().into(imageView)
-
-
-         }
-      }
+      Glide.with(context).load(url).centerCrop().into(imageView)
    }
    suspend  fun setImage(string:String): Bitmap {
 

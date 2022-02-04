@@ -21,10 +21,7 @@ class Adapter(lista:MutableList<String>) : RecyclerView.Adapter<MyViewHolder>(){
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        recyclerView.setRecyclerListener({
-            val holder=it as MyViewHolder
-            holder.scope.cancel()
-        })
+
 
     }
     override fun getItemCount(): Int {
